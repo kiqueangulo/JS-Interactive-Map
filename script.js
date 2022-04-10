@@ -7,7 +7,7 @@ function main() {
     };
 
     function loadMap(position) {
-        // Map initial view and user's marker
+        // Map initial view
         const myMap = L.map('map').setView([position.coords.latitude, position.coords.longitude], 10);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -15,11 +15,18 @@ function main() {
             minZoom: '12',
         }).addTo(myMap);
 
-        const marker = L.marker([position.coords.latitude, position.coords.longitude]);
-        marker.addTo(myMap).bindPopup('<p1><b>You are here</b></p1>').openPopup();
-
         // The markers are gonna be added in the addEventListener
         let group = L.layerGroup([]).addTo(myMap);
+
+        // User's marker
+        const userIcon = L.icon({
+            iconUrl: './assets/userMarker.png',
+            iconSize: [40,35],
+            iconAnchor: [20, 13],
+        });
+        const marker = L.marker([position.coords.latitude, position.coords.longitude], {icon: userIcon});
+        marker.addTo(myMap).bindPopup('<p1><b>You are here</b></p1>').openPopup();
+
 
         // This will return the array of coordenates and names from the 5 stores
         async function places(business, userLatitude, userLongitude) {            
@@ -67,14 +74,12 @@ function main() {
         buttom.addEventListener('click', async function() {
             opt = getSelection(selection);
             let info = await places(opt.value, position.coords.latitude, position.coords.longitude);
-            let markers = [];
-            
+
             for (let i = 0; i < info.length - 1; i++) {
                 for (let j = 0; j < info[i].length; j++) {
-                    markers.push(L.marker(info[i][j]).bindPopup(`${info[i + 1][j]}`).addTo(group));
+                    L.marker(info[i][j]).bindPopup(`${info[i + 1][j]}`).addTo(group);
                 }
             };
-            console.log(markers);
         });
     };
     
