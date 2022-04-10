@@ -1,0 +1,65 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* border: 1px solid black; */
+}
+
+body{
+    background-color: rgb(153, 152, 93);
+    background-image: radial-gradient(farthest-corner at 20% 55%, rgb(212, 82, 82), rgb(230, 230, 195), black);
+}
+
+#controls {
+    min-height: 10vh;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin-left: 0;
+}
+
+#selections{
+    flex-basis: 95%;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+}
+
+p, #businesses, #bttn {
+    min-height: 50px;
+    font-size: 20px;
+    margin: 1em 2em;
+}
+
+p {
+    text-align: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 1em 0em;
+    margin-right: 5px;
+    flex-basis: 9em;
+}
+
+#businesses {
+    border: none;
+    border-bottom: 2px solid rgb(65, 66, 66);
+    margin-left: 5px;
+    background: none;
+}
+
+#bttn {
+    flex-basis: 20%;
+    margin-left: 0.5em;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 3px black;
+    background-color: rgb(204, 204, 204);
+}
+
+#map {
+    height: 600px;
+    width: 95%;
+    margin: auto;
+    margin-top: 1em;
+    box-shadow: 0px 0px 12px black;
+}
+
